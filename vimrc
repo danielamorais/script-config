@@ -20,7 +20,6 @@ let g:syntastic_mode_map = {
 \ "mode": "passive",
 \ "active_filetypes": [],
 \ "passive_filetypes": []}
-inoremap { {<CR>}<Esc>O
 nnoremap J :s/.*\zs;//<Enter> J<Enter>
 nnoremap <expr> J getline(".")[col("$")-2] == ';' ? ':s/.*\zs;//<Enter>J<Enter>' : 'J<Enter>'
 command SC SyntasticCheck
@@ -45,3 +44,8 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+set pastetoggle=<F2>
+nnoremap <CR>f :retab<CR> "changes all tabs to space
