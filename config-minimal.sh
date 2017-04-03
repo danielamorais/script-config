@@ -31,9 +31,13 @@ function install_zsh {
     aptitude install zsh
     sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
     # Install zsh highlighting 
+    cd ~/.oh-my-zsh/custom
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-    echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+    # Install zsh auto suggestions
+    git clone git://github.com/zsh-users/zsh-autosuggestions 
     # Add options in plugins 
+    cd ~
+    sed 's/\(^plugins=([^)]*\)/\1 git pip python zsh-autosuggestions zsh-syntax-highlighting/' .zshrc
 }
 
 if [[ $dist == *"Ubuntu"* ]]; then
@@ -47,7 +51,7 @@ else
 fi
 
 if [ "$deb_package" = true ]; then 
-	install_vim
-    generate_ssh
-    install_zsh
+	#install_vim
+    #generate_ssh
+    #install_zsh
 fi 
