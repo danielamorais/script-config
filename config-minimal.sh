@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo echo "Thanks."
+
 dist=$(lsb_release -i)
 deb_package=false
 rpm_package=false
@@ -12,9 +14,7 @@ function install_vim {
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
     # Install vim and configure
 	cp vimrc ~/ && cd ~/ && mv vimrc .vimrc
-    chown danielamorais:danielamorais .vimrc
     cd .vim && mkdir _swap
-    chown danielamorais:danielamorais _swap
     # Install vim-airline
     cd bundle/ && git clone https://github.com/bling/vim-airline
 }
@@ -37,7 +37,7 @@ function install_zsh {
     git clone git://github.com/zsh-users/zsh-autosuggestions 
     # Add options in plugins 
     cd ~
-    sed 's/\(^plugins=([^)]*\)/\1 git pip python zsh-autosuggestions zsh-syntax-highlighting/' .zshrc
+    sed 's/\(^plugins=([^)]*\)/\1 git pip python zsh-autosuggestions zsh-syntax-highlighting/' .zshrc > /dev/null
 }
 
 if [[ $dist == *"Ubuntu"* ]]; then
@@ -51,7 +51,7 @@ else
 fi
 
 if [ "$deb_package" = true ]; then 
-	#install_vim
+	install_vim
     #generate_ssh
     #install_zsh
 fi 
