@@ -15,10 +15,10 @@ read -p "Enter email: " my_email
 read -p "Enter name: " my_username
 
 function install_vim {
-    if [ "$deb_package" = true ]; then
+    if [ $deb_package = true ]; then
 	    sudo apt-get install aptitude 	
 	    sudo aptitude install vim, curl, git
-    elif [ "$rpm_package" = true]; then
+    elif [ $rpm_package = true ]; then
         sudo dnf -y update
         sudo dnf install curl, git, vim-enhanced 
     fi
