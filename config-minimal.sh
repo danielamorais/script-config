@@ -41,20 +41,20 @@ function generate_ssh {
 }
 
 function install_zsh {
-    if [ "$deb_package" = true]; then
+    if [ $deb_package = true ]; then
         sudo aptitude install zsh
-    elif [ "$rpm_package" = true]; then
+    elif [ $rpm_package = true ]; then
         sudo dnf install zsh
     fi
     sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
     # Install zsh highlighting 
-    cd ~/.oh-my-zsh/custom
+    cd ~/.oh-my-zsh/custom/plugins
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     # Install zsh auto suggestions
     git clone git://github.com/zsh-users/zsh-autosuggestions 
     # Add options in plugins 
-    cd ~
-    sed 's/\(^plugins=([^)]*\)/\1 git pip python zsh-autosuggestions zsh-syntax-highlighting/' .zshrc > /dev/null
+    sed -i.bak "s/^plugins=(\(.*\)/plugins=(zsh-autosuggestions zsh-syntax-highlighting pip python \1/" ~/.zshrc
+    chsh -s $(which zsh)
 }
 
 if [[ $dist == *"Ubuntu"* ]]; then
@@ -68,7 +68,7 @@ else
     exit 1
 fi
 
-install_vim
-generate_ssh
+# install_vim
+# generate_ssh
 install_zsh
 echo -e "${GREEN}[DONE]Thats all folks.${NC}"
