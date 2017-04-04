@@ -68,7 +68,7 @@ else
     exit 1
 fi
 
-# install_vim
-# generate_ssh
+install_vim
+generate_ssh
 install_zsh
 echo -e "${GREEN}[DONE]Thats all folks.${NC}"
