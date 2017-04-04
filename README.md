@@ -7,9 +7,13 @@ $ chmod +x config-minimal.sh
 $ ./config-minimal
 ```
 
-## Plugins ZSH
+## Plugins oh-my-zsh
 * git
 * pip
 * python
 * zsh-autosuggestions
 * zsh-syntax-highlighting
+
+## .vimrc 
+* pathogen
+* vim-airline
